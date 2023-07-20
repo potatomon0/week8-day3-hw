@@ -1,23 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useState, createContext} from 'react'
+import students from './models/students'
+import Student from './components/Student'
+
+export const AppContext = createContext();
 
 function App() {
+  const [learner,setLearner]=useState(students)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppContext.Provider value={{learner,setLearner}}>
+      <Student />
+      </AppContext.Provider>
     </div>
   );
 }
